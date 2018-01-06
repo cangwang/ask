@@ -11,7 +11,14 @@ Page({
     A1:'', //答案1
     A2:'', //答案2
     A3:'', //答案3
-    T:''  //正确答案
+    T:'',  //正确答案
+    successPop: {
+      hide: true,
+      resolve: undefined,
+      title: '提示消息',
+      content: '恭喜你，答对了！',
+      button: '下一题'
+    }
   },
   //事件处理函数
   bindViewTap: function() {
@@ -46,10 +53,14 @@ Page({
     console.log('back')
   },
   chooseAnswer:function(event){
+    let _this=this
     wx.setStorageSync("currentNum", this.data.currentAsk)
     console.log(event.currentTarget.dataset.choice)
-    if (event.currentTarget.dataset.choice == this.T){ //答案正确
+    if (event.currentTarget.dataset.choice == this.data.T){ //答案正确
       wx.setStorageSync("count", this.data.currentAsk)
+      _this.showSuccessPop().then(function () {
+        _this.nextAsk();
+      })
     }
   },
   nextAsk: function () {
@@ -95,18 +106,45 @@ Page({
       path: ''
     }
   },
-  // showSuccess(){
-  //   wx.showModal({
-  //     title: '',
-  //     content: '恭喜你答对了！',
-  //     showCancel: false,
-  //     success: function(res) {
-  //       if (res.confirm) {
-  //         console.log('用户点击确定')
-  //       } else if (res.cancel) {
-  //         console.log('用户点击取消')
-  //       }
-  //     }
-  //   })
-  // }
+  onUnload:function(){
+    isInPage = false;
+    console.log('back')
+  },
+  // chooseAnswer:function(choice){
+  //   let _this = this;
+  //   if(choice == this.T){
+  //     console.log()
+  //     this.showSuccessPop().then(function(){
+  //       _this.nextAsk;
+  //     })
+  //   }
+  // },
+  showSuccessPop(opts){
+    let _this = this;
+    return new Promise(function (resolve) {
+      let successPop = Object.assign(_this.data.successPop,opts);
+      successPop.hide = false;
+      successPop.resolve = resolve;
+      _this.setData({
+        successPop: successPop
+      });
+    });
+    
+  },
+  
+  successPopConfirm(){
+    
+    this.data.successPop.resolve && this.data.successPop.resolve();
+    
+    this.setData({
+      successPop: {
+        hide: true,
+        resolve: undefined,
+        title: '提示消息',
+        content: '恭喜你，答对了！',
+        button: '下一题'
+      }
+    });
+    
+  }
 })
