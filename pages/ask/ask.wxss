@@ -18,8 +18,9 @@
   left: 50%;
   top: 20%;
   margin-left: -280rpx;
+  padding: 78rpx 0;
   width: 560rpx;
-  height: 420rpx;
+  /*height: 420rpx;*/
   background: #fff;
   border-radius: 12rpx;
   font-size: 32rpx;
@@ -27,19 +28,19 @@
 }
 
 .success-pop .title{
-  margin:  78rpx 0 0;
+  margin:  0 0 28rpx;
   font-size: 32rpx;
   text-align: center;
 }
 
 .success-pop .tips-content{
-  margin:  28rpx 0 0;
+  margin:  0 0 48rpx;
   font-size: 32rpx;
   text-align: center;
 }
 
 .success-pop .button{
-  margin: 48rpx auto 0;
+  margin: 0 auto;
   width: 360rpx;
   height: 76rpx;
   border-radius: 40rpx;

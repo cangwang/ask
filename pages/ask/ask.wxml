@@ -11,8 +11,11 @@
   </view>
   <view class="tips-pop-mask" hidden="{{successPop.hide}}">
     <view class="success-pop">
-      <view class="title">
-        <text>{{successPop.title}}</text>
+      <view class="title"  wx:if="{{successPop.type === 'success'}}">
+        <icon type="success" size="36" color="#0ABA07"/>
+      </view>
+      <view class="title" wx:elif="{{successPop.type === 'error'}}">
+        <icon type="clear" size="36" color="#FC0204"/>
       </view>
       <view class="tips-content">
         <text>{{successPop.content}}</text>
