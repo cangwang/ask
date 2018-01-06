@@ -154,7 +154,7 @@ Page({
   },
   
   /**
-   * 答对弹窗
+   * 12题以前答对弹窗
    * @param opts
    * @returns {Promise}
    */
@@ -173,7 +173,7 @@ Page({
   },
   
   /**
-   * 答错弹窗
+   * 12题以前答错弹窗
    * @param opts
    * @returns {Promise}
    */
@@ -214,7 +214,7 @@ Page({
    * @param opts
    * @returns {Promise}
    */
-  showSuccessPop(opts){
+  showConfirmPop(opts){
     
     let _this = this;
     return new Promise(function (resolve,reject) {
