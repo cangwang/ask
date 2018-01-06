@@ -1,13 +1,7 @@
 <!--index.wxml-->
 <view class="container-full">
   <view class="userinfo">
-    <text>答题时间{{countDownSecond}}秒</text>
-  </view>
-  <view class="userinfo">
-    <text>题目</text>
-    <button class='button-choice'>答案1</button>
-    <button class='button-choice'>答案2</button>
-    <button class='button-choice'>答案3</button>
+    <text>正确答案</text>
   </view>
   <view class="userinfo">
     <text>你已经答对{{}}/{{}}</text>
