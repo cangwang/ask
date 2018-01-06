@@ -38,11 +38,6 @@ Page({
         })
       }
     })
-    var total_record = wx.getStorageSync("total_record")
-    console.log('toatl_record:' + total_record)
-    this.setData({
-      totalRecord:total_record
-    })
   },
   onShareAppMessage: function () {
     return {
@@ -53,10 +48,12 @@ Page({
   },
   onShow:function(){
     var total_record = wx.getStorageSync("total_record")
-    console.log('toatl_record:' + total_record)
-    this.setData({
-      totalRecord: total_record
-    })
+    if(total_record >0){
+      console.log('toatl_record:' + total_record)
+      this.setData({
+        totalRecord: total_record
+      })
+    }
   }
   // getUserInfo: function(e) {
   //   console.log(e)

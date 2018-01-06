@@ -85,10 +85,12 @@ Page({
           _this.nextAsk()
         })
       }else{
-        _this.showErrorPop({
-          content: '请分享答题小超人',
-          button: '回到首页'
-        }).then(function () {
+        _this.showConfirmPop({
+          content: '很可惜，正确答案是 ' + _this.data.T
+        }).then(function(){
+          _this.backToTop()
+        },function(){
+          console.log('share')
           _this.backToTop()
         })
       }
