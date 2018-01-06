@@ -1,0 +1,14 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40rpx
+}
+
+.button-choice {
+  width: 500rpx;
+  height: 128rpx;
+  margin: 30rpx;
+  border-radius: 5%;
+}
