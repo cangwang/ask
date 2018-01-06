@@ -63,7 +63,15 @@ Page({
         hasUserInfo: true
       })
     }
-  })},
+  })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '答题小超人',
+      desc: '最具人气的答题小程序!',
+      path: ''
+    }
+  }
   // getUserInfo: function(e) {
   //   console.log(e)
   //   app.globalData.userInfo = e.detail.userInfo

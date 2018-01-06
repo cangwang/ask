@@ -5,11 +5,11 @@
   </view>
   <view class="userinfo">
     <text>{{Q}}</text>
-    <button class='button-choice'>{{A1}}</button>
-    <button class='button-choice'>{{A2}}</button>
-    <button class='button-choice'>{{A3}}</button>
+    <button class='button-choice' bindtap='chooseAnswer' data-choice='1'>{{A1}}</button>
+    <button class='button-choice' bindtap='chooseAnswer' data-choice='2'>{{A2}}</button>
+    <button class='button-choice' bindtap='chooseAnswer' data-choice='3'>{{A3}}</button>
   </view>
-  <view class="tips-pop-mask">
+  <view class="tips-pop-mask" style='display:none'>
     <view class="success-pop">
       <view class="title">
         <text>提示消息</text>
