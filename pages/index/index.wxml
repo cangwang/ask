@@ -11,6 +11,7 @@
     </block> -->
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class='userinfo-record'>挑战记录：{{totalRecord}}</text>
   </view>
   <view class="usermotto">
     <button type='primary' bindtap='navigateToAsk'>{{motto}}</button>
