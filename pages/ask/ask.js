@@ -143,7 +143,12 @@ Page({
       wx.setStorageSync("total_record", current_record)
     }
   },
-
+  
+  /**
+   * 答对弹窗
+   * @param opts
+   * @returns {Promise}
+   */
   showSuccessPop(opts){
     let _this = this;
     return new Promise(function (resolve) {
@@ -158,6 +163,11 @@ Page({
     
   },
   
+  /**
+   * 答错弹窗
+   * @param opts
+   * @returns {Promise}
+   */
   showErrorPop(opts){
     let _this = this;
     return new Promise(function (resolve) {
@@ -172,6 +182,11 @@ Page({
 
   },
   
+  /**
+   * 确认按钮触发函数
+   * @param opts
+   * @returns {Promise}
+   */
   successPopConfirm(){
     
     this.data.successPop.resolve && this.data.successPop.resolve();

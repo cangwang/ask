@@ -24,4 +24,19 @@
       <button class="button" bindtap="successPopConfirm">{{successPop.button}}</button>
     </view>
   </view>
+  
+  <view class="tips-pop-mask">
+    <view class="confirm-pop">
+      <view class="title">
+        <icon type="clear" size="36" color="#FC0204"/>
+      </view>
+      <view class="tips-content">
+        <text>很可惜，正确答案是 中国</text>
+      </view>
+      <view class="button-wrap">
+        <button class="button left">重新答题</button>
+        <button class="button right">分享</button>
+      </view>
+    </view>
+  </view>
 </view>
