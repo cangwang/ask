@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view class="container-full">
   <view class="userinfo">
+    <text class='text-title'>第{{currentAsk+1}}题</text>
     <text>答题时间{{countDownSecond}}秒</text>
   </view>
   <view class="userinfo">

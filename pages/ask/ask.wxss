@@ -46,3 +46,7 @@
   line-height: 76rpx;
   font-size: 32rpx;
 }
+
+.text-title{
+  font-size: 100rpx;
+}
