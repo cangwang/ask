@@ -17,7 +17,7 @@ Page({
     successPop: {
       hide: true,
       resolve: undefined,
-      title: '提示消息',
+      type: 'success',
       content: '恭喜你，答对了！',
       button: '下一题'
     }
@@ -120,6 +120,21 @@ Page({
     return new Promise(function (resolve) {
       let successPop = Object.assign(_this.data.successPop,opts);
       successPop.hide = false;
+      successPop.type = 'success';
+      successPop.resolve = resolve;
+      _this.setData({
+        successPop: successPop
+      });
+    });
+    
+  },
+  
+  showErrorPop(opts){
+    let _this = this;
+    return new Promise(function (resolve) {
+      let successPop = Object.assign(_this.data.successPop,opts);
+      successPop.hide = false;
+      successPop.type = 'error';
       successPop.resolve = resolve;
       _this.setData({
         successPop: successPop
@@ -136,7 +151,7 @@ Page({
       successPop: {
         hide: true,
         resolve: undefined,
-        title: '提示消息',
+        type: 'success',
         content: '恭喜你，答对了！',
         button: '下一题'
       }
