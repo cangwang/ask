@@ -11,7 +11,14 @@ Page({
     A1:'', //答案1
     A2:'', //答案2
     A3:'', //答案3
-    T:''  //正确答案
+    T:'',  //正确答案
+    successPop: {
+      hide: true,
+      resolve: undefined,
+      title: '提示消息',
+      content: '恭喜你，答对了！',
+      button: '下一题'
+    }
   },
   //事件处理函数
   bindViewTap: function() {
@@ -65,7 +72,7 @@ Page({
   },
   chooseAnswer:function(choice){
     if(choice == this.T){
-      
+    
     }
   },
   resume:function(){
@@ -77,8 +84,37 @@ Page({
       A3: dta.answer3,
       T: dta.true_ans
     })
+  },
+  
+  showSuccessPop(opts){
+    let _this = this;
+    return new Promise(function (resolve) {
+      let successPop = Object.assign(_this.data.successPop,opts);
+      successPop.hide = false;
+      successPop.resolve = resolve;
+      _this.setData({
+        successPop: successPop
+      });
+    });
+    
+  },
+  
+  successPopConfirm(){
+    
+    this.data.successPop.resolve && this.data.successPop.resolve();
+    
+    this.setData({
+      successPop: {
+        hide: true,
+        resolve: undefined,
+        title: '提示消息',
+        content: '恭喜你，答对了！',
+        button: '下一题'
+      }
+    });
+    
   }
-
+  
   // showSuccess(){
   //   wx.showModal({
   //     title: '',

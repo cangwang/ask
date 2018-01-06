@@ -9,15 +9,15 @@
     <button class='button-choice'>{{A2}}</button>
     <button class='button-choice'>{{A3}}</button>
   </view>
-  <view class="tips-pop-mask">
+  <view class="tips-pop-mask" hidden="{{successPop.hide}}">
     <view class="success-pop">
       <view class="title">
-        <text>提示消息</text>
+        <text>{{successPop.title}}</text>
       </view>
       <view class="tips-content">
-        <text>恭喜你，答对了！</text>
+        <text>{{successPop.content}}</text>
       </view>
-      <button class="button">下一题</button>
+      <button class="button" bindtap="successPopConfirm">{{successPop.button}}</button>
     </view>
   </view>
 </view>
