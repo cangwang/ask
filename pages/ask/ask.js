@@ -1,7 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var isInPage = true;
+var isInPage = true
+var second = 0
+var interval;
 
 Page({
   data: {
@@ -54,8 +56,8 @@ Page({
   },
   chooseAnswer:function(event){
     let _this=this
-    wx.setStorageSync("currentNum", this.data.currentAsk)
-    console.log(event.currentTarget.dataset.choice)
+    // wx.setStorageSync("currentNum", this.data.currentAsk)
+    clearInterval(interval);
     if (event.currentTarget.dataset.choice == this.data.T){ //答案正确
       wx.setStorageSync("count", this.data.currentAsk)
       _this.showSuccessPop().then(function () {
@@ -78,8 +80,9 @@ Page({
     this.countDown()
   },
   countDown:function(){
-    var second = 10;
-    var interval = setInterval(function () {
+    
+    second = 10;
+    interval = setInterval(function () {
       console.log(second)
       this.setData({
         countDownSecond: second
@@ -108,17 +111,10 @@ Page({
   },
   onUnload:function(){
     isInPage = false;
+    clearInterval(interval)
     console.log('back')
   },
-  // chooseAnswer:function(choice){
-  //   let _this = this;
-  //   if(choice == this.T){
-  //     console.log()
-  //     this.showSuccessPop().then(function(){
-  //       _this.nextAsk;
-  //     })
-  //   }
-  // },
+
   showSuccessPop(opts){
     let _this = this;
     return new Promise(function (resolve) {
@@ -129,7 +125,7 @@ Page({
         successPop: successPop
       });
     });
-    
+
   },
   
   successPopConfirm(){
@@ -145,6 +141,5 @@ Page({
         button: '下一题'
       }
     });
-    
   }
 })
