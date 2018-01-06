@@ -107,7 +107,6 @@ Page({
   countDown:function(){
     second = 10;
     interval = setInterval(function () {
-      console.log(second)
       this.setData({
         countDownSecond: second
       })
