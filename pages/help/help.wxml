@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="container">
+    
+  <view class="help—view">
+    <text class="user-motto">{{help}}</text>
+    
+  </view>
+    <text class="help—article">{{article}}</text>
+  <view >
+    
+  </view>
+</view>

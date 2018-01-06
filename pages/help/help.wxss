@@ -1,0 +1,5 @@
+/**index.wxss**/
+.article {
+  margin-top: 30rpx;
+  font-size: 30rpx
+}
