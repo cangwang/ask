@@ -20,9 +20,18 @@ Page({
     successPop: {
       hide: true,
       resolve: undefined,
-      type: 'success',
+      type: 'success',  // success/error
       content: '恭喜你，答对了！',
       button: '下一题'
+    },
+    confirmPop: {
+      hide: true,
+      resolve: undefined,
+      reject: undefined,
+      type: 'error',  // success/error
+      content: '很可惜，答错了！',
+      buttonTop: '重新答题',
+      buttonDown: '分享'
     }
   },
   //事件处理函数
@@ -183,9 +192,7 @@ Page({
   },
   
   /**
-   * 确认按钮触发函数
-   * @param opts
-   * @returns {Promise}
+   * success-pop按钮触发函数
    */
   successPopConfirm(){
     
@@ -200,5 +207,64 @@ Page({
         button: '下一题'
       }
     });
+  },
+  
+  /**
+   * confirm-pop弹窗
+   * @param opts
+   * @returns {Promise}
+   */
+  showSuccessPop(opts){
+    
+    let _this = this;
+    return new Promise(function (resolve,reject) {
+      let confirmPop = Object.assign(_this.data.confirmPop,opts);
+      confirmPop.hide = false;
+      confirmPop.resolve = resolve;
+      confirmPop.reject = reject;
+      _this.setData({
+        confirmPop: confirmPop
+      });
+    });
+    
+  },
+  
+  /**
+   * confirm-pop上按钮触发函数
+   */
+  confirmButtonTop(){
+    this.data.confirmPop.resolve && this.data.confirmPop.resolve();
+    
+    this.setData({
+      confirmPop: {
+        hide: true,
+        resolve: undefined,
+        reject: undefined,
+        type: 'error',  // success/error
+        content: '很可惜，答错了！',
+        buttonTop: '重新答题',
+        buttonDown: '分享'
+      }
+    });
+  },
+  
+  /**
+   * confirm-pop下按钮触发函数
+   */
+  confirmButtonDown(){
+    this.data.confirmPop.reject && this.data.confirmPop.reject();
+    
+    this.setData({
+      confirmPop: {
+        hide: true,
+        resolve: undefined,
+        reject: undefined,
+        type: 'error',  // success/error
+        content: '很可惜，答错了！',
+        buttonTop: '重新答题',
+        buttonDown: '分享'
+      }
+    });
   }
+  
 })

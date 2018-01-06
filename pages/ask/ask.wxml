@@ -25,17 +25,20 @@
     </view>
   </view>
   
-  <view class="tips-pop-mask">
+  <view class="tips-pop-mask" hidden="{{confirmPop.hide}}">
     <view class="confirm-pop">
-      <view class="title">
+      <view class="title"  wx:if="{{confirmPop.type === 'success'}}">
+        <icon type="success" size="36" color="#0ABA07"/>
+      </view>
+      <view class="title" wx:elif="{{confirmPop.type === 'error'}}">
         <icon type="clear" size="36" color="#FC0204"/>
       </view>
       <view class="tips-content">
-        <text>很可惜，正确答案是 中国</text>
+        <text>{{confirmPop.content}}</text>
       </view>
       <view class="button-wrap">
-        <button class="button left">重新答题</button>
-        <button class="button right">分享</button>
+        <button class="button top" bindtap="confirmButtonTop">{{confirmPop.buttonTop}}</button>
+        <button class="button down" bindtap="confirmButtonDown">{{confirmPop.buttonDown}}</button>
       </view>
     </view>
   </view>

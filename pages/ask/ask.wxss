@@ -83,11 +83,11 @@
   font-size: 32rpx;
 }
 
-.confirm-pop .button-wrap .button.left{
+.confirm-pop .button-wrap .button.top{
   background: #ffa500;
 }
 
-.confirm-pop .button-wrap .button.right{
+.confirm-pop .button-wrap .button.down{
   margin-top: 30rpx;
 }
 
