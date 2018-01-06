@@ -78,4 +78,19 @@ Page({
       T: dta.true_ans
     })
   }
+
+  // showSuccess(){
+  //   wx.showModal({
+  //     title: '',
+  //     content: '恭喜你答对了！',
+  //     showCancel: false,
+  //     success: function(res) {
+  //       if (res.confirm) {
+  //         console.log('用户点击确定')
+  //       } else if (res.cancel) {
+  //         console.log('用户点击取消')
+  //       }
+  //     }
+  //   })
+  // }
 })
