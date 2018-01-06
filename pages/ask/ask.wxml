@@ -9,4 +9,15 @@
     <button class='button-choice'>答案2</button>
     <button class='button-choice'>答案3</button>
   </view>
+  <view class="tips-pop-mask">
+    <view class="success-pop">
+      <view class="title">
+        <text>提示消息</text>
+      </view>
+      <view class="tips-content">
+        <text>恭喜你，答对了！</text>
+      </view>
+      <button class="button">下一题</button>
+    </view>
+  </view>
 </view>

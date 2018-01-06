@@ -27,3 +27,9 @@
   height: 100%;
   background: rgba(0,0,0,.5);
 }
+
+.tips-pop-mask .button{
+  background: #1AAC19;
+  border-radius: 6rpx;
+  color: #fff;
+}
