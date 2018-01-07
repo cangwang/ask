@@ -17,6 +17,10 @@ Page({
     A2:'', //答案2
     A3:'', //答案3
     T:'',  //正确答案
+    canvas:{
+      hide:true,
+      shareImgSrc:'',
+    },
     successPop: {
       hide: true,
       resolve: undefined,
@@ -58,6 +62,8 @@ Page({
       A3: dta.answer3,
       T: dta.true_ans
     })
+
+    var that = this
   },
   onReady:function(){
     this.countDown()
@@ -79,19 +85,29 @@ Page({
     }else{
       wx.setStorageSync("choose_error_count", ++choose_error_count)
       if (this.data.currentAsk+1 < ask_count){
-        _this.showErrorPop({
-          content: '很可惜，正确答案是 '+_this.data.T
-        }).then(function(){
-          _this.nextAsk()
+        // _this.showErrorPop({
+        //   content: '很可惜，正确答案是第' +_this.data.T+'个'
+        // }).then(function(){
+        //   _this.nextAsk()
+        // })
+        _this.showConfirmPop({
+          content: '很可惜，正确答案是第' + _this.data.T + '个'
+          + '。\n' + this.getShareText()
+        }).then(function () {
+          _this.backToTop()
+        }, function () {
+          console.log('share')
+          _this.toShareFriends()
         })
       }else{
         _this.showConfirmPop({
-          content: '很可惜，正确答案是 ' + _this.data.T
+          content: '很可惜，正确答案是第' + _this.data.T+'个'
+          + '。\n' + this.getShareText()
         }).then(function(){
           _this.backToTop()
         },function(){
           console.log('share')
-          _this.backToTop()
+          _this.toShareFriends()
         })
       }
     }
@@ -110,9 +126,86 @@ Page({
     })
     this.countDown()
   },
-  backToTop(){
+  backToTop:function(){
     wx.navigateBack({  //回到首页
       delta: 1,
+    })
+  },
+  toShareFriends:function(){
+    var that = this;
+    //1. 请求后端API生成小程序码
+    // that.getQr();
+
+    //2. canvas绘制文字和图片
+    const ctx = wx.createCanvasContext('myCanvas');
+    var imgPath = 'superTitle.png'
+    var bgImgPath = 'superTitle.png';
+    ctx.drawImage(imgPath, 0, 0, 200, 160);
+
+    ctx.setFillStyle('white')
+    ctx.fillRect(0, 160, 200, 120);
+
+    // ctx.drawImage(imgPath, 30, 550, 60, 60);
+    // ctx.drawImage(bgImgPath, 30, 550, 60, 60);
+    // ctx.drawImage(imgPath, 410, 610, 160, 160);
+
+    ctx.setFontSize(18)
+    ctx.setFillStyle('#111111')
+    ctx.fillText('问答小超人', 20, 175)
+
+    ctx.setFontSize(15)
+    ctx.setFillStyle('#6F6F6F')
+    ctx.fillText('最强的问题', 20, 200)
+    ctx.fillText('等你来挑战', 20, 220)
+
+    ctx.setFontSize(22)
+    ctx.fillText('长按扫码查看详情', 20, 260)
+    ctx.draw()
+
+    // 3. canvas画布转成图片
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 600,
+      height: 800,
+      destWidth: 600,
+      destHeight: 800,
+      canvasId: 'myCanvas',
+      success: function (res) {
+        console.log('sucess '+res.tempFilePath);
+        that.setData({
+          canvas:{
+            hide: false,
+            shareImgSrc: res.tempFilePath
+          }
+        })
+
+      },
+      fail: function (res) {
+        console.log('fail '+res)
+      }
+    })
+  },
+  saveCanvasToLocal:function(){
+    var that=this
+    //4. 当用户点击分享到朋友圈时，将图片保存到相册
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.canvas.shareImgSrc,
+      success(res) {
+        wx.showModal({
+          title: '存图成功',
+          content: '图片成功保存到相册了，去发圈噻~',
+          showCancel: false,
+          confirmText: '好哒',
+          confirmColor: '#72B9C3',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+            }
+            that.hideShareImg()
+          }
+        })
+      }
     })
   },
   countDown:function(){
@@ -175,6 +268,17 @@ Page({
       });
     });
     
+  },
+  getShareText:function(){
+    if (choose_right_count > 12) {
+      return "你距离你的新记录只差那么一点，下次继续加油哦"
+    }else if(choose_right_count == 12){
+      return "您真棒，你已经完成挑战，请分享给朋友一起玩答题。" 
+    }else if(choose_right_count >10){
+      return "继续加油，你已超过了95%以上的人。"
+    }else {
+      return "请不要气馁，下次继续努力。"
+    }
   },
   
   /**
@@ -271,5 +375,4 @@ Page({
       }
     });
   }
-  
 })
