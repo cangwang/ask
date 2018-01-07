@@ -145,6 +145,9 @@ Page({
     }
   },
   onUnload:function(){
+    choose_right_count = 0
+    choose_error_count = 0
+    
     isInPage = false;
     clearInterval(interval)
     console.log('back')

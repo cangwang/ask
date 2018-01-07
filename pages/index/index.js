@@ -48,7 +48,7 @@ Page({
   },
   onShow:function(){
     var total_record = wx.getStorageSync("total_record")
-    if(total_record >0){
+    if(total_record > 0){
       console.log('toatl_record:' + total_record)
       this.setData({
         totalRecord: total_record
